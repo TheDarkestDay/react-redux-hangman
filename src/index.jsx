@@ -1,12 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import main from './reducers/main';
+import App from './containers/app';
 
-class HelloMsg extends Component {
-  render() {
-    return (
-      <h1> Bye! </h1>  
-    )
-  };
-};
+const store = createStore(main, window.devToolsExtension && window.devToolsExtension());
 
-render(<HelloMsg />, document.getElementById('app'));
+
+render(<Provider store={store}> 
+          <App /> 
+       </Provider>, document.getElementById('app'));
