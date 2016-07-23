@@ -2,8 +2,8 @@ const initialState =
 {
     errorsCount: 0,
     usedLetters: [],
-    wordToGuess: 'marksman',
-    wordMask: '********'
+    wordToGuess: '',
+    wordMask: '*'
 }
 
 export default function main(state = initialState, action) {
@@ -19,6 +19,11 @@ export default function main(state = initialState, action) {
       } else {
         return Object.assign({}, state, {errorsCount: state.errorsCount + 1});
       }
+    case 'FETCHING_COMPLETE':
+      return Object.assign({}, state, {
+        wordToGuess: action.response,
+        wordMask: state.wordMask.repeat(action.response.length)
+      }) 
     default:
       return state;  
   }

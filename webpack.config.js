@@ -26,6 +26,9 @@ module.exports = {
     hot: true
   },
   plugins: [
+    new webpack.ProvidePlugin({
+      'Promise': 'es6-promise'
+    }),
     new webpack.HotModuleReplacementPlugin()
   ]
 };
