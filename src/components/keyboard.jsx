@@ -10,7 +10,10 @@ export default class Keyboard extends Component {
     return (
       <div>
         {ALPHABET.map( elem =>
-          <button type="button" key={elem} onClick={(letter) => this.handleBtnClick(elem)}>
+          <button type="button" 
+                  key={elem}
+                  onClick={(letter) => this.handleBtnClick(elem)} 
+                  disabled={this.props.usedLetters.indexOf(elem) > -1}>
             {elem}
           </button>
         )}

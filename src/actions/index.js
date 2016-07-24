@@ -34,7 +34,6 @@ export function fetchWord() {
         return response.text();
       })
       .then(data => {
-        console.log(data);
         dispatch(fetchingComplete(data));
       })
       .catch(error => {

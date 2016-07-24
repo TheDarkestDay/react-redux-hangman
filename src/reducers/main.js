@@ -15,9 +15,9 @@ export default function main(state = initialState, action) {
         for (let i=0;i<state.wordMask.length;i++) {
           state.wordToGuess[i] == action.guess ? newMask += action.guess : newMask += state.wordMask[i];
         }
-        return Object.assign({}, state, {wordMask: newMask});
+        return Object.assign({}, state, {wordMask: newMask, usedLetters: [action.guess, ...state.usedLetters]});
       } else {
-        return Object.assign({}, state, {errorsCount: state.errorsCount + 1});
+        return Object.assign({}, state, {errorsCount: state.errorsCount + 1, usedLetters: [action.guess, ...state.usedLetters]});
       }
     case 'FETCHING_COMPLETE':
       return Object.assign({}, state, {

@@ -14,7 +14,7 @@ class App extends Component {
         <h1>
           {this.props.wordMask}
         </h1>
-        <Keyboard guessLetter={this.props.actions.guessLetter} />
+        <Keyboard guessLetter={this.props.actions.guessLetter} usedLetters={this.props.usedLetters} />
       </div>
     );
   }
@@ -23,7 +23,8 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     wordMask: state.wordMask,
-    errorsCount: state.errorsCount
+    errorsCount: state.errorsCount,
+    usedLetters: state.usedLetters
   }
 }
 
