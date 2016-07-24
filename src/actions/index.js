@@ -9,13 +9,13 @@ export function guessLetter(letter) {
 
 function fetchingStarted() {
   return {
-    type: 'FETCHING__STARTED'
+    type: 'FETCHING_STARTED'
   }
 }
 
 function fetchingFailed() {
   return {
-    type: 'FETCHING__FAILED'
+    type: 'FETCHING_FAILED'
   }
 }
 
@@ -29,13 +29,13 @@ function fetchingComplete(response) {
 export function fetchWord() { 
   return function(dispatch) {   
     dispatch(fetchingStarted());
-    return fetch('/words.json')
+    return fetch('http://randomword.setgetgo.com/get.php')
       .then(response => {
-        return response.json();
+        return response.text();
       })
       .then(data => {
-        let randomIdx = Math.round(Math.random()*2);
-        dispatch(fetchingComplete(data[randomIdx]));
+        console.log(data);
+        dispatch(fetchingComplete(data));
       })
       .catch(error => {
         dispatch(fetchingFailed(error));
